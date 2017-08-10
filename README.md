@@ -6,7 +6,7 @@ This repository includes two files: A table in .csv format with the raw data (At
 
 The script requires the package <i> multcomp </i>, (Hothorn et al. 2008, <i>Biometrical Journal</i>, 50, 346-363), available from CRAN.
 
-To run the script simply type
+To run the script simply move the script and data file to the same directory and type:
 
 ``` Rscript Analyses.R```
 
