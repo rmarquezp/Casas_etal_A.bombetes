@@ -8,4 +8,5 @@ The script requires the package <i> multcomp </i>, (Hothorn et al. 2008, <i>Biom
 To run the script simply type
 
 ``` Rscript Analyses.R```
+
 This should output all results to stdout.
