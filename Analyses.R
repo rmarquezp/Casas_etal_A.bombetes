@@ -160,4 +160,65 @@ cat(paste('\n',"LRS = ",2*(logLik(Mammal_glmLogFull)[1]-logLik(Mammal_glmLogNoIn
 #1-pchisq(2*(logLik(Mammal_glmLogFull)[1]-logLik(Mammal_glmLogNoInt)[1]),df=2)
 
 
+#############################################################
+### REPEAT ANALYSES CONSIDERING MISSING MODELS AS ATTACKS ###
+#############################################################
 
+# Since we can't assign missing models to any predator group, then we just removed insects and analyzed all attacks together. 
+
+## Figure out how many models are missing from each morph at each place
+
+DataNoBugsMissing=DataNoBugs[,1:5]
+
+nModel=300
+
+missing=nModel-table(Data[,1:2])
+
+
+for(i in 1:length(missing[,1])){
+	for(j in 1:length(missing[1,])){
+	
+	#print(missing[i,j])
+	
+	Color=rep(rownames(missing)[i],missing[i,j])
+	Site=rep(colnames(missing)[j],missing[i,j])
+	Attacked=rep("Attacked",missing[i,j])
+	Predator=rep("Missing",missing[i,j])
+	Certainty=rep("Certain",missing[i,j])
+	DataNoBugsMissing=rbind(DataNoBugsMissing,data.frame(Color,Site,Attacked,Predator,Certainty))
+	}
+}
+
+#Check that tables match 
+
+table(DataNoBugsMissing[DataNoBugsMissing$Predator=="Missing",1:2])
+
+############################################
+#### Now repeat with Missing as attacked ###	We can reuse our comparison matrix thankfully
+############################################
+
+print("####### FULL GLM WITH FOR BIRD+MAMMAL ATTACKS + MISSING MODELS #######")
+
+
+Missing_glmLogFull=glm(Attacked~Site*Color,family=binomial(link="logit"),data=DataNoBugsMissing)
+summary(Missing_glmLogFull)
+
+
+DataNoBugsMissing$CbS=with(DataNoBugsMissing, interaction(Color, Site))
+
+Missing_Dummy=glm(Attacked~CbS, family=binomial(link="logit"), data=DataNoBugsMissing)
+
+
+print("####### PAIRWISE COMPARISONS FROM FULL GLM FOR BIRD+MAMMAL ATTACKS + MISSING MODELS #######")
+
+summary(glht(Missing_Dummy, linfct = AllComp[comp,]),adjusted("fdr"))
+
+
+Missing_glmLogNoInt=glm(Attacked~Color+Site,family=binomial(link="logit"),data=DataNoBugsMissing)
+#summary(Bird_glmLogNoInt)
+
+#Compare them using a likelihood ratio test
+
+print("####### COMPARISON OF FULL GLM AND GLM W/O COLOR x LOCALITY INTERACTION FOR BIRD+MAMMAL ATTACKS + MISSING MODELS #######")
+
+cat(paste('\n',"LRS = ",2*(logLik(Missing_glmLogFull)[1]-logLik(Missing_glmLogNoInt)[1]),", p = ",1-pchisq(2*(logLik(Missing_glmLogFull)[1]-logLik(Missing_glmLogNoInt)[1]),df=2),'\n\n', sep=""))
