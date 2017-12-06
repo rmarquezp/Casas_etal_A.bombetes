@@ -215,7 +215,7 @@ summary(glht(Missing_Dummy, linfct = AllComp[comp,]),adjusted("fdr"))
 
 
 Missing_glmLogNoInt=glm(Attacked~Color+Site,family=binomial(link="logit"),data=DataNoBugsMissing)
-#summary(Bird_glmLogNoInt)
+#summary(Missing_glmLogNoInt)
 
 #Compare them using a likelihood ratio test
 
