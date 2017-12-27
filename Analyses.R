@@ -5,7 +5,7 @@ Data=read.csv("Attacks.csv",row.names=1)
 
 #Remove arthropod attacks
 
-DataNoBugs=Data[-which(Data$Predator=="Artropodo"),]
+DataNoBugs=Data[-which(Data$Predator=="Arthropod"),]
 
 #Fit full model
 
@@ -89,7 +89,7 @@ cat("CATIOS\n")
 
 redYellowCatios=table(DataNoBugs[DataNoBugs$Site=="Los Catios",c(1,3)])[2:3,]
 
-pwr.chisq.test(w=ES.w2(redYellowCatios/sum(redYellowAltamira)),df=1,sig.level=0.05,power=0.95)
+pwr.chisq.test(w=ES.w2(redYellowCatios/sum(redYellowCatios)),df=1,sig.level=0.05,power=0.95)
 
 
 #####################################
@@ -98,7 +98,7 @@ pwr.chisq.test(w=ES.w2(redYellowCatios/sum(redYellowAltamira)),df=1,sig.level=0.
 
 print("####### FULL GLM WITH FOR BIRD ATTACKS #######")
 
-DataBirds=DataNoBugs[-which(DataNoBugs$Predator=="Mamifero"),]
+DataBirds=DataNoBugs[-which(DataNoBugs$Predator=="Mammal"),]
 
 Bird_glmLogFull=glm(Attacked~Site*Color,family=binomial(link="logit"),data=DataBirds)
 summary(Bird_glmLogFull)
@@ -131,7 +131,7 @@ cat(paste('\n',"LRS = ",2*(logLik(Bird_glmLogFull)[1]-logLik(Bird_glmLogNoInt)[1
 ### Now with Mammals ###
 ########################
 
-DataMammals=DataNoBugs[-which(DataNoBugs$Predator=="Ave"),]
+DataMammals=DataNoBugs[-which(DataNoBugs$Predator=="Bird"),]
 
 print("####### FULL GLM WITH FOR MAMMAL ATTACKS #######")
 
