@@ -1,7 +1,7 @@
 library(multcomp)
 
 
-Data=read.csv("Ataques.csv",row.names=1)
+Data=read.csv("Attacks.csv",row.names=1)
 
 #Remove arthropod attacks
 
