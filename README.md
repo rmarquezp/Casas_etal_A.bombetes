@@ -8,7 +8,7 @@ The AttackAnalyses script requires the package <i>multcomp</i>, (Hothorn et al. 
 
 To run the scripts simply move the script and data file to the same directory and type:
 
-``` Rscript AttackAnalyses.R```
+``` Rscript AttackAnalyses.R``` or 
 ``` Rscript ColorAnalyses.R```
 
 The first command should output results of statistical analyses to stdout, while the second one will produce a table with RGB-derived PC scores and LM-B scores (ColorationOutputs.csv). 
