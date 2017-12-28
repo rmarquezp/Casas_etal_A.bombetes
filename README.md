@@ -2,12 +2,13 @@
 
 This paper is currently in review.
 
-This repository includes two files: A table in .csv format with the raw data (Ataques.csv), as well as an R script to replicate the analyses performed in the paper (Analyses.R).
+This repository includes four files files: Two tables in .csv format with the raw data for attacks on the retreived clay models (Attacks.csv) and the RGB scores obtained from photographs of frogs and models (RGBScores.csv), and an R script to replicate the analyses performed with each dataset in the paper (AttackAnalyses.R and ColorAnalyses.R).
 
-The script requires the package <i>multcomp</i>, (Hothorn et al. 2008, <i>Biometrical Journal</i>, 50, 346-363), available from CRAN.
+The AttackAnalyses script requires the package <i>multcomp</i>, (Hothorn et al. 2008, <i>Biometrical Journal</i>, 50, 346-363), available from CRAN.
 
-To run the script simply move the script and data file to the same directory and type:
+To run the scripts simply move the script and data file to the same directory and type:
 
-``` Rscript Analyses.R```
+``` Rscript AttackAnalyses.R```
+``` Rscript ColorAnalyses.R```
 
-This should output all results to stdout.
+The first command should output results of statistical analyses to stdout, while the second one will produce a table with RGB-derived PC scores and LM-B scores (ColorationOutputs.csv). 
