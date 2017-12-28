@@ -1,9 +1,5 @@
 ##Analysis of RGB scores obtained from photographs of Andinobates bombetes frogs and clay models. 
 
-library(scatterplot3d)
-library(rgl)
-library(MASS)
-
 data=read.csv("RGBScores.csv")
 
 #Compute R', G', and B' as relative to the overall brightness. 
