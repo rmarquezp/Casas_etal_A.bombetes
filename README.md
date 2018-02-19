@@ -1,6 +1,5 @@
-# Data and code for Casas-Cardona et al.
+# Data and code for Casas-Cardona et al. 2018. Ethology (In press), doi:10.1111/eth.12729
 
-This paper is currently in review.
 
 This repository includes four files files: Two tables in .csv format with the raw data for attacks on the retreived clay models (Attacks.csv) and the RGB scores obtained from photographs of frogs and models (RGBScores.csv), and an R script to replicate the analyses performed with each dataset in the paper (AttackAnalyses.R and ColorAnalyses.R).
 
